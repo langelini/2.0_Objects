@@ -28,8 +28,8 @@ public class Astronaut {
     public Astronaut(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =30;
-        dy =30;
+        dx =5;
+        dy =5;
         width = 60;
         height = 60;
         isAlive = true;
@@ -49,10 +49,10 @@ public class Astronaut {
         if(xpos>1000){
             dx=-dx;
         }
-        if(xpos<1){
+        if(xpos<0){
             dx=-dx;
         }
-        if(ypos<1){
+        if(ypos<0){
             dy=-dy;
 
         }

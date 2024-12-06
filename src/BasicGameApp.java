@@ -70,7 +70,7 @@ public class BasicGameApp implements Runnable {
 		astro2pic = Toolkit.getDefaultToolkit().getImage("astro.jpg");
 		backgroundpic = Toolkit.getDefaultToolkit().getImage("download (1).png");
 		astro = new Astronaut(20,200);
-		astro2 = new Astronaut(500,500);
+		astro2 = new Astronaut(100,150);
 
 
 
@@ -112,6 +112,10 @@ public class BasicGameApp implements Runnable {
 			astro.dy = -astro.dy;
 			astro2.dx=-astro2.dx;
 			astro2.dy = -astro2.dy;
+			astro.dx=astro.dx-5;
+			astro.dy=astro.dy-5;
+			astro2.width=astro2.width+10;
+			astro2.height=astro2.height+1;
 		}
 	}
 
