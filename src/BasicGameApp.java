@@ -13,6 +13,8 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -22,7 +24,8 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 
-public class BasicGameApp implements Runnable {
+//step 1: add keylistner to implements
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -66,9 +69,9 @@ public class BasicGameApp implements Runnable {
        
       //variable and objects
       //create (construct) the objects needed for the game and load up 
-		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
-		astro2pic = Toolkit.getDefaultToolkit().getImage("astro.jpg");
-		backgroundpic = Toolkit.getDefaultToolkit().getImage("download (1).png");
+		astroPic = Toolkit.getDefaultToolkit().getImage("astro.jpg");
+		astro2pic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
+		backgroundpic = Toolkit.getDefaultToolkit().getImage("");
 		astro = new Astronaut(20,200);
 		astro2 = new Astronaut(100,150);
 
@@ -106,16 +109,21 @@ public class BasicGameApp implements Runnable {
 	}
 
 	public void collision(){
-		if(astro.rec.intersects(astro2.rec)){
+		if(astro.rec.intersects(astro2.rec) && astro.crash == false && astro2.isAlive == true && astro.isAlive == true){
 			System.out.println("splat");
+			astro.isAlive = false;
 			astro.dx=-astro.dx;
 			astro.dy = -astro.dy;
 			astro2.dx=-astro2.dx;
 			astro2.dy = -astro2.dy;
-			astro.dx=astro.dx-5;
-			astro.dy=astro.dy-5;
+			astro.dx=astro.dx*2;
+			astro.dy=astro.dy*2;
 			astro2.width=astro2.width+10;
 			astro2.height=astro2.height+1;
+			astro.crash = true;
+		}
+		if(!astro.rec.intersects(astro2.rec)){
+			astro.crash = false;
 		}
 	}
 
@@ -126,7 +134,6 @@ public class BasicGameApp implements Runnable {
 			try {
 				Thread.sleep(time);
 			} catch (InterruptedException e) {
-
 			}
    }
 
@@ -143,7 +150,8 @@ public class BasicGameApp implements Runnable {
       canvas = new Canvas();  
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
-   
+   // step 2: add key listner to canvas as this
+	   canvas.addKeyListener(this);
       panel.add(canvas);  // adds the canvas to the panel.
    
       // frame operations
@@ -166,12 +174,29 @@ public class BasicGameApp implements Runnable {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 		g.drawImage(backgroundpic,0,0, WIDTH, HEIGHT, null);
-      //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
-		g.drawImage(astro2pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
-
+		if(astro.isAlive == true && astro2.isAlive == true) {
+			g.drawImage(astro2pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		}
 		g.dispose();
-
 		bufferStrategy.show();
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {//dont touch
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println("key pressed");
+		System.out.println(e.getKeyChar());
+		System.out.println(e.getKeyCode());
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
 	}
 }
