@@ -17,6 +17,10 @@ public class Astronaut {
     public boolean isAlive;         //a boolean to denote if the hero is alive or dead.
     public Rectangle rec;
     public boolean crash;
+    public boolean left;
+    public boolean right;
+    public boolean up;
+    public boolean down;
 
     // METHOD DEFINITION SECTION
 
@@ -29,12 +33,16 @@ public class Astronaut {
     public Astronaut(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =5;
-        dy =4;
+        dx =0;
+        dy =0;
         width = 60;
         height = 60;
         isAlive = true;
         rec = new Rectangle(xpos,ypos, width, height);
+        up = false;
+        down = false;
+        left = false;
+        right = false;
  
     } // constructor
 
@@ -66,6 +74,22 @@ public class Astronaut {
        // System.out.println(dx);
     }
     public void wrap(){
+        if( up == true){
+            dy = -10;
+            dx = 0;
+        }
+        if ( down == true){
+            dy = 10;
+            dx= 0;
+        }
+        if( left == true){
+            dx = -10;
+            dy = 0;
+        }
+        if(right == true){
+            dx = 10;
+            dy = 0;
+        }
         if(xpos>1000){
             xpos = 0;
         }
