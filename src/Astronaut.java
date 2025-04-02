@@ -76,19 +76,19 @@ public class Astronaut {
     public void wrap(){
         if( up == true){
             dy = -10;
-            dx = 0;
+
         }
         if ( down == true){
             dy = 10;
-            dx= 0;
+
         }
         if( left == true){
             dx = -10;
-            dy = 0;
+
         }
         if(right == true){
             dx = 10;
-            dy = 0;
+
         }
         if(xpos>1000){
             xpos = 0;

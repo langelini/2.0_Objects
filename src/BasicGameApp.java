@@ -197,27 +197,50 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(e.getKeyCode() == 38){
 			System.out.println("going up");
 			astro.up = true;
-			astro.down = false;
+
 		}
 		if(e.getKeyCode() == 37){
 			System.out.println("going left");
 			astro.left = true;
-			astro.right = false;
+
+
 		}
 		if(e.getKeyCode() == 40){
 			System.out.println("going down");
 			astro.down = true;
-			astro.up = false;
+
 		}
 		if(e.getKeyCode() == 39){
 			System.out.println("going right");
 			astro.right = true;
-			astro.left = false;
+//
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == 38){
+			System.out.println("not going up");
+			astro.up = false;
+
+		}
+		if(e.getKeyCode() == 37){
+			System.out.println("not going left");
+			astro.left = false;
+
+
+		}
+		if(e.getKeyCode() == 40){
+			System.out.println("not going down");
+			astro.down = false;
+
+		}
+		if(e.getKeyCode() == 39){
+			System.out.println("not going right");
+			astro.right = false;
+//
+		}
+
 
     }
 }
