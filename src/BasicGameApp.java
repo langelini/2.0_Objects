@@ -50,6 +50,8 @@ public class BasicGameApp implements Runnable, KeyListener {
 	private Astronaut astro;
 	private Astronaut astro2;
 
+	// step 1: add astro array and say how big it is
+	Astronaut [] astroarray = new Astronaut[10];
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -57,6 +59,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 		BasicGameApp ex = new BasicGameApp();   //creates a new instance of the game
 		new Thread(ex).start();                 //creates a threads & starts up the code in the run( ) method  
 	}
+
 
 
    // Constructor Method
@@ -74,6 +77,10 @@ public class BasicGameApp implements Runnable, KeyListener {
 		backgroundpic = Toolkit.getDefaultToolkit().getImage("");
 		astro = new Astronaut(20,200);
 		astro2 = new Astronaut(100,150);
+		//step 2: fill astro array
+		for(int x = 0;x<astroarray.length; x++){
+			astroarray[x] = new Astronaut((int)(Math.random()*900),(int)(Math.random()*700));
+		}
 
 
 
@@ -105,6 +112,9 @@ public class BasicGameApp implements Runnable, KeyListener {
 		collision();
 		astro.wrap();
 		astro2.wrap();
+		for(int y = 0; y<astroarray.length ; y++){
+			astroarray[y].bounce();
+		}
 
 	}
 
@@ -177,6 +187,9 @@ public class BasicGameApp implements Runnable, KeyListener {
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		if(astro.isAlive == true && astro2.isAlive == true) {
 			g.drawImage(astro2pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		}
+		for(int z=0; z<astroarray.length;z++){
+			g.drawImage(astro2pic, astroarray[z].xpos, astroarray[z].ypos, astro2.width, astro2.height, null);
 		}
 		g.dispose();
 		bufferStrategy.show();
