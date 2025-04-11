@@ -135,6 +135,12 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(!astro.rec.intersects(astro2.rec)){
 			astro.crash = false;
 		}
+		for(int x = 0; x<astroarray.length;x++){
+			if(astro.rec.intersects(astroarray[x].rec)){
+				System.out.println("crashing");
+
+			}
+		}
 	}
 
 	
