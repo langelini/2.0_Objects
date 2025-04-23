@@ -81,9 +81,6 @@ public class BasicGameApp implements Runnable, KeyListener {
 		for(int x = 0;x<astroarray.length; x++){
 			astroarray[x] = new Astronaut((int)(Math.random()*900),(int)(Math.random()*700));
 		}
-
-
-
 	}// BasicGameApp()
 
    
@@ -95,10 +92,8 @@ public class BasicGameApp implements Runnable, KeyListener {
    // main thread
    // this is the code that plays the game after you set things up
 	public void run() {
-
       //for the moment we will loop things forever.
 		while (true) {
-
          moveThings();  //move all the game objects
          render();  // paint the graphics
          pause(20); // sleep for 10 ms
@@ -114,6 +109,8 @@ public class BasicGameApp implements Runnable, KeyListener {
 		astro2.wrap();
 		for(int y = 0; y<astroarray.length ; y++){
 			astroarray[y].bounce();
+			astroarray[y].dx =5;
+			astroarray[y].dy= 5;
 		}
 
 	}
@@ -216,23 +213,18 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(e.getKeyCode() == 38){
 			System.out.println("going up");
 			astro.up = true;
-
 		}
 		if(e.getKeyCode() == 37){
 			System.out.println("going left");
 			astro.left = true;
-
-
 		}
 		if(e.getKeyCode() == 40){
 			System.out.println("going down");
 			astro.down = true;
-
 		}
 		if(e.getKeyCode() == 39){
 			System.out.println("going right");
 			astro.right = true;
-//
 		}
 	}
 
@@ -247,7 +239,6 @@ public class BasicGameApp implements Runnable, KeyListener {
 			System.out.println("not going left");
 			astro.left = false;
 
-
 		}
 		if(e.getKeyCode() == 40){
 			System.out.println("not going down");
@@ -257,9 +248,8 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(e.getKeyCode() == 39){
 			System.out.println("not going right");
 			astro.right = false;
-//
-		}
 
+		}
 
     }
 }
